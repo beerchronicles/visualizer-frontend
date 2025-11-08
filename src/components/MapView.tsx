@@ -68,7 +68,7 @@ export function MapView() {
     useEffect(() => {
         if (!geojsonLoaded) {
             setGeojsonLoaded(true)
-            fetch(`http://localhost:8000/available_timestamps?map_id=${params.mapId}`)
+            fetch(`https://visback.fiwka.dev/available_timestamps?map_id=${params.mapId}`)
                 .then(res => res.json())
                 .then(res => setTimestamps(res.timestamps.map(x => {
                     return <Button key={x} onClick={() => {
@@ -76,7 +76,7 @@ export function MapView() {
                         navigate(0)
                     }}>{x}</Button>
                 })))
-            fetch(`http://localhost:8000/generate_geojson_timestamp?timestamp=${params.timestamp}&map_id=${params.mapId}`)
+            fetch(`https://visback.fiwka.dev/generate_geojson_timestamp?timestamp=${params.timestamp}&map_id=${params.mapId}`)
                 .then(res => res.json())
                 .then(res => {
                     setGeojsonData(res)

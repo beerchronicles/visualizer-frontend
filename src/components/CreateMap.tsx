@@ -14,7 +14,7 @@ export function CreateMap() {
         setShowLoading(true)
 
         try {
-            fetch(`http://localhost:8000/new_map?lbx=${lbx}&lby=${lby}`, {
+            fetch(`https://visback.fiwka.dev/new_map?lbx=${lbx}&lby=${lby}`, {
                 method: 'POST'
             })
                 .then(res => res.json())
@@ -25,19 +25,19 @@ export function CreateMap() {
                     pointFormData.append('file', pointFile!)
                     cadastreFormData.append('file', cadastreFile!)
 
-                    await fetch(`http://localhost:8000/upload_point?map_id=${res.map_id}`, {
+                    await fetch(`https://visback.fiwka.dev/upload_point?map_id=${res.map_id}`, {
                         method: 'POST',
                         body: pointFormData
                     })
 
-                    await fetch(`http://localhost:8000/upload_cadastre?map_id=${res.map_id}`, {
+                    await fetch(`https://visback.fiwka.dev/upload_cadastre?map_id=${res.map_id}`, {
                         method: 'POST',
                         body: cadastreFormData
                     })
 
-                    await fetch(`http://localhost:8000/process?map_id=${res.map_id}`)
+                    await fetch(`https://visback.fiwka.dev/process?map_id=${res.map_id}`)
 
-                    const timestamps = (await fetch(`http://localhost:8000/available_timestamps?map_id=${res.map_id}`).then(res => res.json())).timestamps
+                    const timestamps = (await fetch(`https://visback.fiwka.dev/available_timestamps?map_id=${res.map_id}`).then(res => res.json())).timestamps
 
                     navigate(`/map/${res.map_id}/${timestamps[0]}`)
                 })

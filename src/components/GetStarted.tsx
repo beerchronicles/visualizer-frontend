@@ -12,7 +12,7 @@ export function GetStarted() {
         if (!isLoaded) {
             setIsLoaded(true)
 
-            fetch("http://localhost:8000/all_maps")
+            fetch("https://visback.fiwka.dev/all_maps")
                 .then(res => res.json())
                 .then(res => {
                     setMaps(res.maps.map((x: number) => <option value={x} key={x}>{x}</option>))
@@ -33,7 +33,7 @@ export function GetStarted() {
                     </NativeSelect.Field>
                     <NativeSelect.Indicator/>
                 </NativeSelect.Root>
-                <Button onClick={useCallback(() => navigate(`/map/${value}`), [navigate, value])}>Выбрать существующую карту</Button>
+                <Button onClick={useCallback(() => navigate(`/map/${value}/00001`), [navigate, value])}>Выбрать существующую карту</Button>
                 <Button onClick={useCallback(() => navigate('/create_map'), [navigate])}>Создать новую карту</Button>
             </Flex>
         </Flex>
